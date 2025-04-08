@@ -4,6 +4,12 @@ import { UpdateAdminDto } from './dto/update-admin.dto';
 
 @Injectable()
 export class AdminService {
+  private readonly adminEmail = 'admin@example.com'; // Hardcoded email
+  private readonly adminPassword = 'admin'; // Hardcoded password
+
+  validateAdmin(email: string, password: string): boolean {
+    return email === this.adminEmail && password === this.adminPassword;
+  }
   create(createAdminDto: CreateAdminDto) {
     return 'This action adds a new admin';
   }

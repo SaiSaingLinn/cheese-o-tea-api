@@ -26,6 +26,7 @@ model Category {
   name      String
   menus     MenuItem[]
   createdAt DateTime   @default(now())
+  order     Order[]
 }
 
 model Order {
@@ -36,6 +37,7 @@ model Order {
   status     String      @default("pending")
   createdAt  DateTime    @default(now())
   items      OrderItem[]
+  category   Category    @relation(fields: [categoryId], references: [id])
   categoryId String
 }
 
