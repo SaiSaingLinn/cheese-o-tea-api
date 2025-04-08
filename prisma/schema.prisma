@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  // url      = env("DATABASE_URL")
+  url      = "file:./dev.db" // for testing purpose
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id        String     @id @default(uuid())
+  name      String
+  menus     MenuItem[]
+  createdAt DateTime   @default(now())
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  phone      String // Encrypted
+  otp        String // Encrypted
+  isVerified Boolean     @default(false)
+  status     String      @default("pending")
+  createdAt  DateTime    @default(now())
+  items      OrderItem[]
+  categoryId String
+}
+
+model MenuItem {
+  id          String      @id @default(uuid())
+  name        String
+  description String?
+  price       Float
+  imageUrl    String?
+  categoryId  String
+  category    Category    @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime    @default(now())
+  orders      OrderItem[]
+}
+
+model OrderItem {
+  id         String   @id @default(uuid())
+  order      Order    @relation(fields: [orderId], references: [id])
+  orderId    String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  menuItemId String
+  quantity   Int      @default(1)
+  note       String?
+}
