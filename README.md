@@ -31,6 +31,11 @@
 $ npm install
 ```
 
+## Run "prisma generate" to initialize @prisma/client
+```bash
+$ npx prisma generate
+```
+
 ## Seed data
 ```bash
 # if there are no data (optional)
