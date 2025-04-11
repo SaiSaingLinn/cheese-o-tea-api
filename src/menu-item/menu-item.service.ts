@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateMenuItemDto } from './dto/create-menu-item.dto';
 import { UpdateMenuItemDto } from './dto/update-menu-item.dto';
 import { PrismaService } from 'src/common/prisma/prisma.service';
@@ -33,8 +33,15 @@ export class MenuItemService {
   }
 
   async remove(id: string) {
-    return await this.prisma.menuItem.delete({
-      where: { id },
-    });
+    try {
+      return await this.prisma.menuItem.delete({
+        where: { id },
+      });
+    } catch (error) {
+      if (error.code === 'P2003') {
+        throw new ConflictException('Cannot delete menu item with existing order.');
+      }
+      throw error;
+    }
   }
 }

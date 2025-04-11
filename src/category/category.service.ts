@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { PrismaService } from 'src/common/prisma/prisma.service';
@@ -30,8 +30,16 @@ export class CategoryService {
   }
 
   async remove(id: string) {
-    return await this.prisma.category.delete({
-      where: { id },
-    });
+    try {
+      return await this.prisma.category.delete({
+        where: { id },
+      });
+    }
+    catch (error) {
+      if (error.code === 'P2003') {
+        throw new ConflictException('Cannot delete category with existing menu items.');
+      }
+      throw error;
+    }
   }
 }

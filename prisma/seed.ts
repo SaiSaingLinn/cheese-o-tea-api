@@ -46,7 +46,7 @@ async function main() {
       name: 'Passion Yogurt',
       description: 'A refreshing blend of creamy yogurt with a tangy passion fruit twist.',
       price: 5000.00,
-      imageUrl: 'https://example.com/pizza.jpg',
+      imageUrl: 'https://placehold.co/150/FFEE00/000000?text=Passion+Yogurt',
       categoryId: category1.id,
     },
   });
@@ -56,7 +56,7 @@ async function main() {
       name: 'Orange Yogurt',
       description: 'A delicious yogurt flavored with the sweetness of fresh oranges.',
       price: 5000.00,
-      imageUrl: 'https://example.com/coke.jpg',
+      imageUrl: 'https://placehold.co/150/FFA500/000000?text=Orange+Yogurt',
       categoryId: category1.id,
     },
   });
@@ -66,7 +66,7 @@ async function main() {
       name: 'Mango Bubble Tea',
       description: 'A sweet and creamy bubble tea made with mango puree and chewy tapioca pearls.',
       price: 5000.00,
-      imageUrl: 'https://example.com/pizza.jpg',
+      imageUrl: 'https://placehold.co/150/FFEE00/000000?text=Mango+Bubble',
       categoryId: category2.id,
     },
   });
@@ -76,7 +76,7 @@ async function main() {
       name: 'Matcha Latte',
       description: 'A smooth and creamy drink made with high-quality matcha powder and milk.',
       price: 5000.00,
-      imageUrl: 'https://example.com/coke.jpg',
+      imageUrl: 'https://placehold.co/150/FFA500/000000?text=Matcha+Latte',
       categoryId: category4.id,
     },
   });
@@ -86,7 +86,7 @@ async function main() {
       name: 'Chocolate Smoothie',
       description: 'A rich and velvety chocolate smoothie blended with milk and ice.',
       price: 5000.00,
-      imageUrl: 'https://example.com/pizza.jpg',
+      imageUrl: 'https://placehold.co/150/FFEE00/000000?text=Chocolate+Smoothie',
       categoryId: category4.id,
     },
   });
@@ -96,7 +96,7 @@ async function main() {
       name: 'Berry Soda',
       description: 'A fizzy and fruity soda made with a mix of fresh berries.',
       price: 3500.00,
-      imageUrl: 'https://example.com/coke.jpg',
+      imageUrl: 'https://placehold.co/150/FFA500/000000?text=Berry+Soda',
       categoryId: category5.id,
     },
   });
@@ -106,7 +106,7 @@ async function main() {
       name: 'Tropical Fruit Juice',
       description: ' A refreshing fruit juice made from a mix of tropical fruits like pineapple, mango, and papaya.',
       price: 4000.00,
-      imageUrl: 'https://example.com/pizza.jpg',
+      imageUrl: 'https://placehold.co/150/FFEE00/000000?text=Tropical+Fruit',
       categoryId: category6.id,
     },
   });
@@ -116,20 +116,60 @@ async function main() {
       name: 'Caramel Coffee',
       description: 'A delicious coffee drink topped with caramel syrup for a sweet finish.',
       price: 3500.00,
-      imageUrl: 'https://example.com/coke.jpg',
+      imageUrl: 'https://placehold.co/150/FFA500/000000?text=Caramel+Coffee',
       categoryId: category3.id,
     },
   });
 
-  // Seed Orders
-  await prisma.order.create({
+  const menuItem9 = await prisma.menuItem.create({
     data: {
-      phone: '0991234567',
-      otp: '123456',  // For testing purposes
-      categoryId: category1.id,
-      status: 'pending',
+      name: 'Mango Fruit Juice',
+      description: ' A refreshing fruit juice made from a mix of tropical fruits like pineapple, mango, and papaya.',
+      price: 4000.00,
+      imageUrl: 'https://placehold.co/150/FFEE00/000000?text=Mango+Fruit',
+      categoryId: category6.id,
     },
   });
+
+  const menuItem10 = await prisma.menuItem.create({
+    data: {
+      name: 'Strawberry Fruit Juice',
+      description: 'A refreshing fruit juice made with fresh strawberries and a hint of sweetness.',
+      price: 5000.00,
+      imageUrl: 'https://placehold.co/150/FFA500/000000?text=Strawberry+Fruit',
+      categoryId: category6.id,
+    },
+  });
+
+  const menuItem11 = await prisma.menuItem.create({
+    data: {
+      name: 'Banana Fruit Juice',
+      description: ' A refreshing fruit juice made from a mix of tropical fruits like pineapple, mango, and papaya.',
+      price: 4000.00,
+      imageUrl: 'https://placehold.co/150/FFEE00/000000?text=Banana+Fruit',
+      categoryId: category6.id,
+    },
+  });
+
+  const menuItem12 = await prisma.menuItem.create({
+    data: {
+      name: 'Apple Fruit Juice',
+      description: 'A refreshing fruit juice made with fresh strawberries and a hint of sweetness.',
+      price: 5000.00,
+      imageUrl: 'https://placehold.co/150/FFA500/000000?text=Apple+Fruit',
+      categoryId: category6.id,
+    },
+  });
+
+  // Seed Orders
+  // await prisma.order.create({
+  //   data: {
+  //     phone: '0991234567',
+  //     otp: '007007',  // For testing purposes
+  //     categoryId: category1.id,
+  //     status: 'pending',
+  //   },
+  // });
 
   console.log('Seed data has been successfully inserted');
 }

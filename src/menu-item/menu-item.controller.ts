@@ -2,8 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MenuItemService } from './menu-item.service';
 import { CreateMenuItemDto } from './dto/create-menu-item.dto';
 import { UpdateMenuItemDto } from './dto/update-menu-item.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@Controller('menu-item')
+@ApiBearerAuth()
+@ApiTags('menu-item')
+@Controller({ version: '1', path: 'menu-item' })
 export class MenuItemController {
   constructor(private readonly menuItemService: MenuItemService) {}
 

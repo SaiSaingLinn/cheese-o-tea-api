@@ -11,17 +11,27 @@ import {
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@Controller('admin')
+@ApiBearerAuth()
+@ApiTags('admin')
+@Controller({ version: '1', path: 'admin' })
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
+  // Since in requirement doc not included for authentication logic, 
+  // I will just add a simple authentication logic for admin login
   @Post('login')
   login(@Body() { email, password }: { email: string; password: string }) {
     if (!this.adminService.validateAdmin(email, password)) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    return { message: 'Login successful' };
+    return {
+      data: {
+        name: "Admin",
+      },
+      message: 'Login successful',
+    };
   }
 
   @Post()
