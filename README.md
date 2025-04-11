@@ -33,6 +33,7 @@ $ npm install
 
 ## Seed data
 ```bash
+# if there are no data (optional)
 $ npm run seed
 ```
 
@@ -48,6 +49,9 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Api Doc (Swagger)
+http://localhost:3000/api-docs
 
 ## Deployment
 
