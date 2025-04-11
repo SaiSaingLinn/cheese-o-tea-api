@@ -36,7 +36,7 @@ $ npm install
 $ npx prisma generate
 ```
 
-## Seed data
+## Seed data (optional)
 ```bash
 # if there are no data (optional)
 $ npm run seed
